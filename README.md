@@ -4,7 +4,7 @@ The goal of the project is to create a tax calculator for sole proprietors in It
 
 This first version will be locally on a Windows Machine with a python 3.9 installation.
 
-I designed the calculator with as much modularity as possibile in order to account for potential regulatory changes and calculation procedures. Furthermore, for the same reason, I separated the calcualtion logic from the calculator app.
+I designed the calculator with as much modularity as possibile in order to account for potential regulatory changes and calculation procedures. Furthermore, for the same reason, I separated the expense coefficient assignment, tax calculation logic and calculator app.
 
 ## Calculation logic
 
@@ -16,7 +16,7 @@ What are the main drivers of the calculation?
 
 ### 1. Income
 
-The income
+The income is calcualted on a cash basis, not with accruals.
 
 
 ### 2. Taxable income

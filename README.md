@@ -2,8 +2,9 @@
 
 The goal of the project is to create a tax calculator for sole proprietors in Italy. The final outcome is to return a value that helps users set aside the necessary funds for tax liquidations. The value may be accompanied by some other information.
 
-* The first version of the file will be run locally on a Windows Machine with a python 3.9 installation
-* The second one will be hosted on and be delivered as a SaaS
+This first version will be locally on a Windows Machine with a python 3.9 installation.
+
+I designed the calculator with as much modularity as possibile in order to account for potential regulatory changes and calculation procedures. Furthermore, for the same reason, I separated the calcualtion logic from the calculator app.
 
 ## Calculation logic
 
@@ -12,7 +13,6 @@ What are the main drivers of the calculation?
 1. income (on cash basis)
 2. taxable income determined by the progressive code
 3. tax percentage determined by the years of activity
-4. contributions to be paid
 
 ### 1. Income
 
@@ -35,11 +35,6 @@ Tax percentage has two scenarios depending on the years of activity of the sole 
 
 1. less or equal than 5 years.
 2. more than 5 years.
-
-
-### 4. Contributions to be paid
-
-The contributions paid are calculated based on ....
 
 ## Main components
 

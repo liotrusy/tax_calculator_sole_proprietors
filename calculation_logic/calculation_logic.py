@@ -1,11 +1,12 @@
 import assignment_logic.assignment_logic as assignment
+import decimal as dm
 
 def assign_tax_percentage(years_of_activity):
     """Assigns tax percentage based on years of activity"""
     if years_of_activity <= 5:
-        tax_percentage = 0.05
+        tax_percentage = dm.Decimal(0.05)
     else:
-        tax_percentage = 0.15
+        tax_percentage = dm.Decimal(0.15)
     return tax_percentage
 
 def calculate_gross_taxable_income(income, expense_coefficient):

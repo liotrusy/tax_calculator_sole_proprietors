@@ -1,9 +1,11 @@
 import calculation_logic.calculation_logic as logic
+import decimal as dm
 
 def convert_to_num(a_string):
     """Function to convert string to input. If user provide a non convertible string returns empty"""
     try:
-        return float(a_string)
+        number = dm.Decimal(a_string)
+        return number
     except:
         return ""
 

@@ -1,3 +1,5 @@
+import decimal as dm
+
 def clean_input(input_ateco_code):
     """ Clean the input provided by the user """
     ateco_code = input_ateco_code.replace(".", "")
@@ -61,6 +63,7 @@ def assign_expense_coefficient(ateco_code):
         expense_coefficient = 0.67
         group = 9
   
+    expense_coefficient = dm.Decimal(expense_coefficient)
     return (expense_coefficient, group)
  
 

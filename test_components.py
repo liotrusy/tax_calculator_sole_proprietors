@@ -39,10 +39,15 @@ class TestAssignmentLogic:
         assert assignment.clean_input("10.10.20.10") == -1 # input too long
         assert assignment.clean_input("01.10") == "0110"
 
+    def test_group_1(self):
+        assert assignment.assign_expense_coefficient("101111") == (0.40, 1)
+        assert assignment.assign_expense_coefficient("111011") == (0.40, 1)
+
     def test_group_2(self):
         assert assignment.assign_expense_coefficient("462310") == (0.40, 2)
         assert assignment.assign_expense_coefficient("473510") == (0.40, 2)
         assert assignment.assign_expense_coefficient("479100") == (0.40, 2)
+        assert assignment.assign_expense_coefficient("4510101") == (0.40, 2)
 
     def test_group_3(self):
         assert assignment.assign_expense_coefficient("4781") == (0.4, 3)
@@ -50,6 +55,12 @@ class TestAssignmentLogic:
     def test_group_4(self):
         assert assignment.assign_expense_coefficient("4782") == (0.4, 4)
         assert assignment.assign_expense_coefficient("4789") == (0.4, 4)
+
+    def test_group_5(self):
+        assert assignment.assign_expense_coefficient("410000") == (0.86, 5)
+        assert assignment.assign_expense_coefficient("421010") == (0.86, 5)
+        assert assignment.assign_expense_coefficient("431010") == (0.86, 5)
+        assert assignment.assign_expense_coefficient("680000") == (0.86, 5)     
 
     def test_group_6(self):
         assert assignment.assign_expense_coefficient("4611") == (0.62, 6)

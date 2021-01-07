@@ -23,7 +23,7 @@ class TestCalculationLogic:
         assert calculator.calculate_tax(799, 0.15, 50) == (119.85, 69.85)
 
 class TestAssignmentLogic:
-    pass
+
     # there are three main variables that should be return after the assignment
 
     # expense_coefficient
@@ -31,3 +31,27 @@ class TestAssignmentLogic:
     # progressive_id
 
     # looking at the table the definiton is based on codes that range from 2 to 5 characters (.dot included)
+    # the maximum number of ateco characters is 6 characters plus two separators (.dots)
+    # https://www.codiceateco.it/codice-ateco
+
+    def test_input_response(self):
+        assert assignment.clean_input("10.10") == "1010"
+        assert assignment.clean_input("10.10.20.10") == -1 # input too long
+        assert assignment.clean_input("01.10") == "0110"
+
+    def test_group_2(self):
+        assert assignment.assign_expense_coefficient("462310") == (0.40, 2)
+        assert assignment.assign_expense_coefficient("473510") == (0.40, 2)
+        assert assignment.assign_expense_coefficient("479100") == (0.40, 2)
+
+    def test_group_3(self):
+        assert assignment.assign_expense_coefficient("4781") == (0.4, 3)
+
+    def test_group_4(self):
+        assert assignment.assign_expense_coefficient("4782") == (0.4, 4)
+        assert assignment.assign_expense_coefficient("4789") == (0.4, 4)
+
+    def test_group_6(self):
+        assert assignment.assign_expense_coefficient("4611") == (0.62, 6)
+        assert assignment.assign_expense_coefficient("46189") == (0.62, 6)
+

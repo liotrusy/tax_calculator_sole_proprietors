@@ -1,46 +1,61 @@
-# #division of coefficient per class
+def clean_input(input_ateco_code):
+    """ Clean the input provided by the user """
+    ateco_code = input_ateco_code.replace(".", "")
+    if len(ateco_code) <= 6:
+        return ateco_code
+    else:
+        return -1
 
-# ateco_value = codice_ateco_user[0:5]
+def assign_expense_coefficient(ateco_code):
+    """ Assign expense coefficient based on ateco code """
+    ateco_class = ateco_code[:4]
+    ateco_group = ateco_code[:3]
+    ateco_division = ateco_code[:2]
 
-# if ateco_value == "47.81":
-#     coefficiente_redditivita = 0.4
-#     gruppo_di_settore = "Commercio  ambulante di prodotti alimentari ebevande"
-# elif ateco_value == "47.82" or ateco_value == "47.89":
-#     coefficiente_redditivita = 0.54
-#     gruppo_di_settore = "Commercio  ambulante di  altri  prodotti"
+    # class assignment
+    if ateco_class == "4781":
+        expense_coefficient = 0.4
+        group = 3
 
-# #division of coefficient per gruppo
+    elif ateco_class == "4782" or ateco_class == "4789":
+        expense_coefficient = 0.4
+        group = 4
 
-# ateco_value = float(codice_ateco_user[0:4])
+    # group assignment
+    ateco_group = int(ateco_group)
 
-# if ateco_value == 46.1:
-#     coefficiente_redditivita = 0.62
-#     gruppo_di_settore = "Intermediari del commercio"
+    if ateco_group == 461:
+        expense_coefficient = 0.62
+        group = 6
 
-# elif (ateco_value >= 46.2 and ateco_value <= 46.9) or (ateco_value >= 47.1 and ateco_value <= 47.7) or (ateco_value == 47.9):
-#     coefficiente_redditivita = 0.4
-#     gruppo_di_settore = "Commercio all’ingrosso e  al  dettaglio"
+    elif (ateco_group >= 462 and ateco_group <= 469) or (ateco_group >= 471 and ateco_group <= 477) or (ateco_group == 479):
+        expense_coefficient = 0.4
+        group = 2
 
+    return (expense_coefficient, group)
 
 # # division of coefficient per divisione
 
 # ateco_classe = float(codice_ateco_user[0:2])
 
-# if ateco_classe == 10 or ateco_value == 11:
-#     coefficiente_redditivita = 0.4
-#     gruppo_di_settore = "Industrie alimentari e delle bevande"
-# elif ateco_value == 45:
-#     coefficiente_redditivita = 0.4
-#     gruppo_di_settore = "Commercio all'ingrosso ee al dettaglio"
-# elif (ateco_value >= 41 and ateco_value <= 43) or ateco_value == 68:
-#     coefficiente_redditivita = 0.86
-#     gruppo_di_settore = "Costruzioni  e  attività immobiliari"
-# elif ateco_value == 55 or ateco_value == 56:
-#     coefficiente_redditivita = 0.4
-#     gruppo_di_settore = "Attività  dei  servizi  di alloggio  e  di  ristorazione"
-# elif (ateco_value >= 64 and ateco_value <= 66) or (ateco_value >= 69 and ateco_value <= 75) or (ateco_value == 85) or (ateco_value >= 86 and ateco_value <= 88):
-#     coefficiente_redditivita = 0.78
-#     gruppo_di_settore = "Attività  professionali, scientifiche,  tecniche, sanitarie,  di  istruzione, servizi  finanziari  e  assicurativi"
+# if ateco_division == 10 or ateco_division == 11:
+#     expense_coefficient = 0.4
+#     group = "Industrie alimentari e delle bevande"
+
+# elif ateco_division == 45:
+#     expense_coefficient = 0.4
+#     group = "Commercio all'ingrosso ee al dettaglio"
+
+# elif (ateco_division >= 41 and ateco_division <= 43) or ateco_division == 68:
+#     expense_coefficient = 0.86
+#     group = "Costruzioni  e  attività immobiliari"
+
+# elif ateco_division == 55 or ateco_division == 56:
+#     expense_coefficient = 0.4
+#     group = "Attività  dei  servizi  di alloggio  e  di  ristorazione"
+# elif (ateco_division >= 64 and ateco_division <= 66) or (ateco_division >= 69 and ateco_division <= 75) or (ateco_division == 85) or (ateco_division >= 86 and ateco_division <= 88):
+#     expense_coefficient = 0.78
+#     group = "Attività  professionali, scientifiche,  tecniche, sanitarie,  di  istruzione, servizi  finanziari  e  assicurativi"
 # else:
-#     coefficiente_redditivita = 0.67
-#     gruppo_di_settore = "Altre attività economiche"
+#     expense_coefficient = 0.67
+#     group = "Altre attività economiche

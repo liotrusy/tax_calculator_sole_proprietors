@@ -66,3 +66,21 @@ class TestAssignmentLogic:
         assert assignment.assign_expense_coefficient("4611") == (0.62, 6)
         assert assignment.assign_expense_coefficient("46189") == (0.62, 6)
 
+    def test_group_7(self):
+        assert assignment.assign_expense_coefficient("551010") == (0.4, 7)
+        assert assignment.assign_expense_coefficient("561011") == (0.4, 7)
+
+    def test_group_8(self):
+        assert assignment.assign_expense_coefficient("651010") == (0.78, 8)
+        assert assignment.assign_expense_coefficient("720101") == (0.78, 8)
+        assert assignment.assign_expense_coefficient("850000") == (0.78, 8)
+        assert assignment.assign_expense_coefficient("880000") == (0.78, 8)
+
+    def test_group_9(self):
+        assert assignment.assign_expense_coefficient("011010") == (0.67, 9)
+        assert assignment.assign_expense_coefficient("061010") == (0.67, 9)
+        assert assignment.assign_expense_coefficient("201010") == (0.67, 9)
+        assert assignment.assign_expense_coefficient("351010") == (0.67, 9)
+        assert assignment.assign_expense_coefficient("371010") == (0.67, 9)
+        assert assignment.assign_expense_coefficient("491010") == (0.67, 9)
+        assert assignment.assign_expense_coefficient("999999") == (0.67, 9)

@@ -1,38 +1,28 @@
 import pytest
-import calculation_logic.calculation_logic as calculator
+import calculation_logic.calculation_logic as calc_logic
 import assignment_logic.assignment_logic as assignment
 
 class TestCalculationLogic:
 
     def test_tax_percentage_assigner(self):
-        assert calculator.assign_tax_percentage(5) == 0.05
-        assert calculator.assign_tax_percentage(6) == 0.15
+        assert calc_logic.assign_tax_percentage(5) == 0.05
+        assert calc_logic.assign_tax_percentage(6) == 0.15
 
     def test_gross_taxable_income_calculator(self):
         """test the gross taxable income calculator, accepted values are validated prior to passing the arguments"""
-        assert calculator.calculate_gross_taxable_income(1000, 0.78) == 780
-        assert calculator.calculate_gross_taxable_income(1000, 0.54) == 540
+        assert calc_logic.calculate_gross_taxable_income(1000, 0.78) == 780
+        assert calc_logic.calculate_gross_taxable_income(1000, 0.54) == 540
 
     def test_net_taxable_income_calculator(self):
-        assert calculator.calculate_net_taxable_income(799, 0) == 799
-        assert calculator.calculate_net_taxable_income(799, 100) == 699
+        assert calc_logic.calculate_net_taxable_income(799, 0) == 799
+        assert calc_logic.calculate_net_taxable_income(799, 100) == 699
 
-    def test_tax_calculator(self):
-        assert calculator.calculate_tax(799, 0.15, 0) == (119.85, 119.85)
-        assert calculator.calculate_tax(699, 0.15, 0) == (104.85, 104.85)
-        assert calculator.calculate_tax(799, 0.15, 50) == (119.85, 69.85)
+    def test_calculation_logic(self):
+        assert calc_logic.calculate_net_tax(799, 0.15, 0) == 119.85
+        assert calc_logic.calculate_net_tax(699, 0.15, 0) == 104.85
+        assert calc_logic.calculate_net_tax(799, 0.15, 50) == 69.85
 
 class TestAssignmentLogic:
-
-    # there are three main variables that should be return after the assignment
-
-    # expense_coefficient
-    # sector_group
-    # progressive_id
-
-    # looking at the table the definiton is based on codes that range from 2 to 5 characters (.dot included)
-    # the maximum number of ateco characters is 6 characters plus two separators (.dots)
-    # https://www.codiceateco.it/codice-ateco
 
     def test_input_response(self):
         assert assignment.clean_input("10.10") == "1010"
@@ -84,3 +74,10 @@ class TestAssignmentLogic:
         assert assignment.assign_expense_coefficient("371010") == (0.67, 9)
         assert assignment.assign_expense_coefficient("491010") == (0.67, 9)
         assert assignment.assign_expense_coefficient("999999") == (0.67, 9)
+
+class TestTaxCalculator:
+    def test_tax_calculator(self):
+        assert calc_logic.tax_calculator(10000, 6, "72.10.10", 1000, 0) == 1020
+        assert calc_logic.tax_calculator(10000, 6, "72.10.10", 1000, 20) == 1000
+        assert calc_logic.tax_calculator(10000, 5, "72.10.10", 1000, 0) == 340
+        assert calc_logic.tax_calculator(10000, 5, "72.10.10", 1000, 140) == 200

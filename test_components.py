@@ -1,6 +1,7 @@
 import pytest
 import calculation_logic.calculation_logic as calc_logic
 import assignment_logic.assignment_logic as assignment
+import calculator
 
 class TestCalculationLogic:
 
@@ -21,6 +22,12 @@ class TestCalculationLogic:
         assert calc_logic.calculate_net_tax(799, 0.15, 0) == 119.85
         assert calc_logic.calculate_net_tax(699, 0.15, 0) == 104.85
         assert calc_logic.calculate_net_tax(799, 0.15, 50) == 69.85
+
+    def test_tax_calculator(self):
+        assert calc_logic.tax_calculator(10000, 6, "72.10.10", 1000, 0) == 1020
+        assert calc_logic.tax_calculator(10000, 6, "72.10.10", 1000, 20) == 1000
+        assert calc_logic.tax_calculator(10000, 5, "72.10.10", 1000, 0) == 340
+        assert calc_logic.tax_calculator(10000, 5, "72.10.10", 1000, 140) == 200
 
 class TestAssignmentLogic:
 
@@ -76,8 +83,9 @@ class TestAssignmentLogic:
         assert assignment.assign_expense_coefficient("999999") == (0.67, 9)
 
 class TestTaxCalculator:
-    def test_tax_calculator(self):
-        assert calc_logic.tax_calculator(10000, 6, "72.10.10", 1000, 0) == 1020
-        assert calc_logic.tax_calculator(10000, 6, "72.10.10", 1000, 20) == 1000
-        assert calc_logic.tax_calculator(10000, 5, "72.10.10", 1000, 0) == 340
-        assert calc_logic.tax_calculator(10000, 5, "72.10.10", 1000, 140) == 200
+    
+    def test_convert_to_num(self):
+        assert calculator.convert_to_num("") == ""
+        assert calculator.convert_to_num("a") == ""
+        assert calculator.convert_to_num("10") == 10
+        assert calculator.convert_to_num("10.1") == 10.1

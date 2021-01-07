@@ -8,12 +8,16 @@ I designed the calculator with as much modularity as possibile in order to accou
 
 ## Main components
 
-* calculator.py (main application)
-* calculation_logic module (contains the logic for the numerical elaboration)
-* assignment_logic module (selects the expense coefficient given an activity code)
-* tes_components.py (testing suite and cases for the components above, test runner pytest)
+1. calculator.py (main application)
+2. calculation_logic module (contains the logic for the numerical elaboration)
+3. assignment_logic module (selects the expense coefficient given an activity code)
+4. tes_components.py (testing suite and cases for the components above, test runner pytest)
 
 To run the application on your machine download the first three components.
+
+NOTES:
+* In this application, I've used the decimal data type. That's because, due to the financial nature of the app, it needed a higher level of precision.
+* Since values should not exceed 65,000 (the income limit imposed by law on forfait sole proprietors) the decimal data type will not significantly impede execution or performance.
 
 ## Calculation logic
 

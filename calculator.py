@@ -28,6 +28,25 @@ def capture_inputs():
 
     return calculation_inputs
 
+def return_tax(inputs):
+    income = inputs['income']
+    if income >=0 and income <= 65000:
+        tax_to_be_paid = logic.tax_calculator(income, \
+            inputs['years_of_activity'], \
+            inputs['activity_code'], \
+            inputs['paid_contributions'], \
+            inputs['tax_prepayment'])
+
+        print("------------ YOUR RESULT ------------------")
+        print(f"Great, The taxes you have to pay are {tax_to_be_paid}")
+        print("Thank you for using our service!")
+
+    else:
+        print("------------ YOUR RESULT ------------------")
+        print("Your income is beyond the range allowed for sole proprietors. Please restart the calculator")
+
+    return 1
+
 
 inputs = capture_inputs()
 while "" in inputs.values():
@@ -35,12 +54,6 @@ while "" in inputs.values():
     print("Let's start from the top :)")
     inputs = capture_inputs()
 
-tax_to_be_paid = logic.tax_calculator(inputs['income'], \
-    inputs['years_of_activity'], \
-    inputs['activity_code'], \
-    inputs['paid_contributions'], \
-    inputs['tax_prepayment'])
+return_tax(inputs)
 
-print("------------ YOUR RESULT ------------------")
-print(f"Great, The taxes you have to pay are {tax_to_be_paid}")
-print("Thank you for using our service!")
+

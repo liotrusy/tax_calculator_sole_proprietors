@@ -1,7 +1,7 @@
 import calculation_logic.calculation_logic as logic
 import decimal as dm
 
-def convert_to_num(a_string):
+def convert_to_num(a_string: str):
     """Function to convert string to input. If user provide a non convertible string returns empty"""
     try:
         number = dm.Decimal(a_string)
@@ -28,7 +28,7 @@ def capture_inputs():
 
     return calculation_inputs
 
-def return_tax(inputs):
+def return_tax(inputs: dict):
     income = inputs['income']
     if income >=0 and income <= 65000:
         tax_to_be_paid = logic.tax_calculator(income, \

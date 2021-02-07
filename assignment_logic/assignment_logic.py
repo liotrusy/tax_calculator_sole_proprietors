@@ -1,15 +1,15 @@
 import decimal as dm
 
-def clean_input(input_ateco_code):
-    """ Clean the input provided by the user """
+def clean_input(input_ateco_code:str):
+    """Return ATECO code without the dot(.)"""
     ateco_code = input_ateco_code.replace(".", "")
     if len(ateco_code) <= 6:
         return ateco_code
     else:
         return -1
 
-def assign_expense_coefficient(ateco_code):
-    """ Assign expense coefficient based on ateco code """
+def assign_expense_coefficient(ateco_code:str):
+    """Returns expense coefficient and group from an ATECO code string"""
     ateco_class = ateco_code[:4]
     ateco_group = int(ateco_code[:3])
     ateco_division = int(ateco_code[:2])
